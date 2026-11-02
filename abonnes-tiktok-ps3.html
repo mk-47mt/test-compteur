@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abonnés TikTok · time4gta6</title>
+<style>
+  :root {
+    --noir: #050102;
+    --bordeaux: #3a030b;
+    --rouge: #c4001d;
+    --rouge-vif: #ff2a44;
+    --texte: #f4e9ea;
+    --texte-doux: rgba(244, 233, 234, .6);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: radial-gradient(ellipse at 50% 120%, var(--bordeaux) 0%, var(--noir) 60%);
+    color: var(--texte);
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  #vagues {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; display: block;
+  }
+  .page {
+    position: relative; z-index: 1;
+    min-height: 100%;
+    display: flex; flex-direction: column;
+    padding: 18px 5% 14px;
+    padding-top: calc(18px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Barre du haut : style XMB */
+  .haut { display: flex; justify-content: flex-end; align-items: center; font-size: 18px; letter-spacing: .04em; color: var(--texte); text-shadow: 0 0 12px rgba(255, 42, 68, .5); }
+  .haut .jour { color: var(--texte-doux); margin-right: 14px; }
+
+  /* Catégorie centrale */
+  .categorie { text-align: center; margin-top: 3vh; }
+  .icone {
+    width: 84px; height: 84px; margin: 0 auto 14px;
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(255, 60, 80, .35), rgba(120, 0, 15, .55));
+    border: 1px solid rgba(255, 110, 125, .55);
+    box-shadow: 0 0 34px rgba(255, 30, 60, .55), inset 0 0 18px rgba(255, 255, 255, .12);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .icone svg { width: 46px; height: 46px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgba(255, 255, 255, .7)); }
+  h1 { margin: 0; font-size: 34px; font-weight: 200; letter-spacing: .03em; text-shadow: 0 0 22px rgba(255, 42, 68, .7); }
+  .compte { margin: 6px 0 0; font-size: 17px; color: var(--texte-doux); }
+
+  /* Panneau du widget */
+  .panneau {
+    width: 100%; max-width: 760px; margin: 4vh auto 0;
+    padding: 22px 22px 14px;
+    background: rgba(8, 0, 2, .55);
+    border: 1px solid rgba(255, 60, 80, .3);
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(196, 0, 29, .25), inset 0 1px 0 rgba(255, 255, 255, .08);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  #countik-widget { min-height: 220px; width: 100%; overflow-x: auto; }
+  #countik-widget > * { max-width: 100%; }
+  .pow-countik { text-align: right; }
+
+  .bas { margin-top: auto; padding-top: 18px; text-align: center; font-size: 13px; color: var(--texte-doux); }
+
+  @media (max-width: 600px) {
+    .haut { font-size: 15px; }
+    .icone { width: 68px; height: 68px; border-radius: 15px; }
+    .icone svg { width: 36px; height: 36px; }
+    h1 { font-size: 26px; }
+    .compte { font-size: 15px; }
+    .panneau { padding: 14px 12px 10px; margin-top: 3vh; }
+  }
+  @media (max-height: 480px) and (orientation: landscape) {
+    .categorie { margin-top: 0; }
+    .icone { display: none; }
+    h1 { font-size: 24px; }
+    .panneau { margin-top: 12px; }
+  }
+  @media (min-width: 1200px) {
+    h1 { font-size: 42px; }
+    .panneau { max-width: 900px; padding: 30px 30px 18px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="vagues" aria-hidden="true"></canvas>
+
+<div class="page">
+  <div class="haut" aria-live="off">
+    <span class="jour" id="jour"></span><span id="heure"></span>
+  </div>
+
+  <div class="categorie">
+    <div class="icone" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+    </div>
+    <h1>Abonnés TikTok</h1>
+    <p class="compte">@time4gta6</p>
+  </div>
+
+  <main class="panneau">
+          <div id="countik-widget"></div>
+          <script>
+            (function() {
+              var countikWidget = document.createElement('script');
+              countikWidget.src = 'https://countik.com/widget.js';
+              countikWidget.async = true;
+              countikWidget.onload = function() {
+                if (typeof window.initializeCountikWidget === 'function') {
+                  window.initializeCountikWidget({
+                    container: '#countik-widget',
+                    themeColor: '#c4001d',
+                    uniqueId: 'Time4gta6',
+                    language: 'fr'
+                  });
+                }
+              };
+              var firstScript = document.getElementsByTagName('script')[0];
+              firstScript.parentNode.insertBefore(countikWidget, firstScript);
+            })();
+          </script>
+          <a href="https://countik.com/fr/user/@time4gta6" target="_blank" class="pow-countik" style="font-size:11px;color:#8a7a7c;display:block;padding:4px 3px;text-decoration:none;">Alimenté par Countik™</a>
+  </main>
+
+  <div class="bas">Les données se mettent à jour automatiquement.</div>
+</div>
+
+<script>
+/* Horloge façon XMB */
+(function () {
+  var j = document.getElementById('jour'), h = document.getElementById('heure');
+  var jours = ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'];
+  function p(n) { return n < 10 ? '0' + n : '' + n; }
+  function maj() {
+    var d = new Date();
+    j.textContent = jours[d.getDay()] + ' ' + p(d.getDate()) + '/' + p(d.getMonth() + 1);
+    h.textContent = p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+  maj(); setInterval(maj, 10000);
+})();
+
+/* Vagues rouges animées (fond XMB) */
+(function () {
+  var c = document.getElementById('vagues');
+  if (!c || !c.getContext) return;
+  var x = c.getContext('2d');
+  var W, H, t = 0, dernier = 0;
+  var calmes = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rubans = [
+    { a: 0.10, f: 1.3, v: 0.00030, p: 0.0, e: 0.07, o: 0.20, y: 0.58 },
+    { a: 0.13, f: 0.9, v: 0.00022, p: 1.7, e: 0.09, o: 0.16, y: 0.62 },
+    { a: 0.08, f: 1.8, v: 0.00038, p: 3.1, e: 0.05, o: 0.18, y: 0.55 },
+    { a: 0.12, f: 1.1, v: 0.00026, p: 4.4, e: 0.08, o: 0.14, y: 0.66 },
+    { a: 0.07, f: 2.2, v: 0.00045, p: 5.6, e: 0.04, o: 0.22, y: 0.60 }
+  ];
+  function taille() {
+    var r = window.devicePixelRatio > 1.5 ? 1.5 : (window.devicePixelRatio || 1);
+    W = window.innerWidth; H = window.innerHeight;
+    c.width = W * r; c.height = H * r;
+    x.setTransform(r, 0, 0, r, 0, 0);
+  }
+  function dessiner(ms) {
+    x.clearRect(0, 0, W, H);
+    x.globalCompositeOperation = 'lighter';
+    for (var i = 0; i < rubans.length; i++) {
+      var r = rubans[i], pas = 10, n, k, xx, y1, y2, ph;
+      var g = x.createLinearGradient(0, 0, W, 0);
+      g.addColorStop(0, 'rgba(120,0,15,0)');
+      g.addColorStop(0.5, 'rgba(255,40,70,' + r.o + ')');
+      g.addColorStop(1, 'rgba(120,0,15,0)');
+      x.fillStyle = g;
+      x.beginPath();
+      for (xx = 0; xx <= W + pas; xx += pas) {
+        ph = (xx / W) * Math.PI * 2 * r.f + ms * r.v + r.p;
+        y1 = H * r.y + Math.sin(ph) * H * r.a + Math.sin(ph * 0.5 + r.p) * H * 0.03;
+        if (xx === 0) x.moveTo(xx, y1); else x.lineTo(xx, y1);
+      }
+      for (xx = W + pas; xx >= 0; xx -= pas) {
+        ph = (xx / W) * Math.PI * 2 * r.f + ms * r.v + r.p + 0.55;
+        y2 = H * r.y + Math.sin(ph) * H * r.a * 1.1 + H * r.e;
+        x.lineTo(xx, y2);
+      }
+      x.closePath();
+      x.fill();
+    }
+    x.globalCompositeOperation = 'source-over';
+  }
+  function boucle(ms) {
+    if (ms - dernier > 33) { dessiner(ms); dernier = ms; }
+    window.requestAnimationFrame(boucle);
+  }
+  taille();
+  window.addEventListener('resize', function () { taille(); dessiner(t); });
+  if (calmes) { dessiner(4000); } else { window.requestAnimationFrame(boucle); }
+})();
+</script>
+</body>
+</html>
